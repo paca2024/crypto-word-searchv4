@@ -5,7 +5,8 @@ const WORDS = [
     'WALLET', 'TOKEN', 'DEFI', 'NFT', 'ALTCOIN',
     'EXCHANGE', 'HODL', 'STAKING', 'DAPP', 'HASH',
     'LEDGER', 'PROTOCOL', 'SMART', 'CONTRACT', 'GAS',
-    'FORK', 'NODE', 'SEED', 'CHAIN', 'BLOCK'
+    'FORK', 'NODE', 'SEED', 'CHAIN', 'BLOCK',
+    'AVALANCHE', 'BULLISH', 'BEARISH'
 ];
 const HIDDEN_WORDS = ['LEE', 'SCOTT', 'KEITH', 'PACA'];
 const COOLDOWN_HOURS = 24;
@@ -43,17 +44,22 @@ function initializeGame() {
 }
 
 function checkCooldown() {
-    const lastGameTime = localStorage.getItem('lastGameTime');
-    if (lastGameTime) {
-        const timeSinceLastGame = Date.now() - parseInt(lastGameTime);
-        const cooldownTime = COOLDOWN_HOURS * 60 * 60 * 1000;
-        
-        if (timeSinceLastGame < cooldownTime) {
-            createCooldownOverlay(cooldownTime - timeSinceLastGame);
-            return false;
+    try {
+        const lastGameTime = localStorage.getItem('lastGameTime');
+        if (lastGameTime) {
+            const timeSinceLastGame = Date.now() - parseInt(lastGameTime);
+            const cooldownTime = COOLDOWN_HOURS * 60 * 60 * 1000;
+            
+            if (timeSinceLastGame < cooldownTime) {
+                createCooldownOverlay(cooldownTime - timeSinceLastGame);
+                return false;
+            }
         }
+        return true;
+    } catch (error) {
+        console.warn('Storage access not available:', error);
+        return true; // Allow game to proceed without cooldown if storage is not available
     }
-    return true;
 }
 
 function createCooldownOverlay(remainingTime) {
