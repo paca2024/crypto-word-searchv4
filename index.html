@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Word Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="signInOverlay" class="overlay">
+        <div class="sign-in-box">
+            <h2>Welcome to Crypto Word Search</h2>
+            <div class="input-group">
+                <label for="tgUsername">Enter your Telegram username:</label>
+                <input type="text" id="tgUsername" placeholder="@username" required>
+                <button id="startGameBtn">Start Game</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <header class="game-header">
+            <h1>Crypto Word Search</h1>
+        </header>
+
+        <div class="game-controls">
+            <div class="game-stats">
+                <div class="timer">Time: <span id="timer">00:00</span></div>
+                <div class="score">Score: <span id="score">0</span></div>
+            </div>
+            <div class="game-buttons">
+                <button id="endGameBtn">End Game</button>
+            </div>
+        </div>
+
+        <main class="game-area">
+            <div id="gameBoard" class="game-board"></div>
+            
+            <aside class="word-list">
+                <h2>Find These Words:</h2>
+                <ul id="wordList"></ul>
+            </aside>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
